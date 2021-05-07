@@ -5,7 +5,7 @@ import './Users.css'
 export default function Users() {
 
     let [users, setUsers] = useState([]);
-    let [singleUser, setSingleUser] = useState([]);
+    let [singleUser, setSingleUser] = useState(null);
 
     useEffect(() => {
         fetch('https://jsonplaceholder.typicode.com/users')
@@ -33,7 +33,7 @@ export default function Users() {
            </div>
             <div className={'single-user-box'}>
                 {
-                    singleUser&&<h2>{singleUser.id} - {singleUser.username} - {singleUser.phone}</h2>
+                    singleUser&&<h2>{singleUser.id} - {singleUser.username} - {singleUser.phone} - {singleUser.address.city}</h2>
                 }
 
             </div>
