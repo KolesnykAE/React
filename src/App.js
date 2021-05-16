@@ -1,5 +1,5 @@
 import './App.css';
-import CharacterComponent from "./Components/characters/characterComponent";
+import CharacterComponent from "./Components/characterComponent";
 
 
 function App() {
