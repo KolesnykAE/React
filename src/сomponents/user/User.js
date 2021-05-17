@@ -1,10 +1,7 @@
 import {Link, Route} from "react-router-dom";
 import UserDetails from "../user-details/UserDetails";
 
-export default function User(props) {
-    let{item, url} = props;
-
-
+export default function User({item, url}) {
     return (
         <div>
             {item.name}
