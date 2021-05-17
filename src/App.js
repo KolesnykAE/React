@@ -1,10 +1,11 @@
 import './App.css';
 import {BrowserRouter as Router, Link, Route, Switch,} from 'react-router-dom';
-import Home from "./Components/home/Home";
-import Users from "./Components/users/Users";
-import Posts from "./Components/posts/Posts";
-import PostDetails from "./Components/post-details/PostDetails";
-import Comments from "./Components/comments/Comments";
+import Home from "./сomponents/home/Home";
+import Users from "./сomponents/users/Users";
+import Posts from "./сomponents/posts/Posts";
+import PostDetails from "./сomponents/post-details/PostDetails";
+import Comments from "./сomponents/comments/Comments";
+
 
 function App() {
     return (
@@ -24,7 +25,10 @@ function App() {
                     <Route path={'/users'} component={Users}/>
                     <Route exact path={'/posts/:id'} component={PostDetails}/>
                     <Route path={'/posts'} component={Posts}/>
-                    <Route path={'/comments'} component={Comments}/>
+
+                    <Route path={'/comments'} render={(props) => {
+                        return <Comments{...props}/>
+                    }}/>
                 </Switch>
                 <hr/>
             </div>

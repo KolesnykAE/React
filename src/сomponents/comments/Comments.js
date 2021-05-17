@@ -1,6 +1,6 @@
 import {useEffect, useState,} from "react";
 import Comment from "../comment/Comment";
-import {Route, Switch} from "react-router-dom";
+import {Route} from "react-router-dom";
 import CommentDetails from "../comment-details/CommentDetails";
 
 export default function Comments(props) {
@@ -12,12 +12,13 @@ export default function Comments(props) {
         fetch('https://jsonplaceholder.typicode.com/comments')
             .then(value => value.json())
             .then(value => {
-                setComments([...value]);
-            })
+                setComments(value);
+            });
     },[]);
 
     return (
         <div>
+            <Route path={'/comments/:id'} component={CommentDetails}/>
             {
                 comments.map(value => <Comment key={value.id} item={value} url={url}/>)
             }
