@@ -1,12 +1,10 @@
 import './App.css';
 import {BrowserRouter as Router, Link, Route, Switch,} from 'react-router-dom';
-import Home from "./components/home/Home";
-import Users from "./components/users/Users";
-import Posts from "./components/posts/Posts";
-import PostDetails from "./components/post-details/PostDetails";
-import Comments from "./components/comments/Comments";
-import CommentDetails from "./components/comment-details/CommentDetails";
-
+import Home from "./сomponents/home/Home";
+import Users from "./сomponents/users/Users";
+import Posts from "./сomponents/posts/Posts";
+import PostDetails from "./сomponents/post-details/PostDetails";
+import Comments from "./сomponents/comments/Comments";
 
 function App() {
     return (
@@ -22,29 +20,15 @@ function App() {
 
                 <hr/>
                 <Switch>
-                    {/*первый вариант плохой потому что не имеет доступ к истории*/}
-                    <Route exact path={'/'}>
-                        <Home/>
-                    </Route>
-                    {/*2й*/}
+                    <Route exact path={'/'} component={Home}/>
                     <Route path={'/users'} component={Users}/>
-                    {/*3й*/}
-                    {/*<Route path={'/posts'} render={(props)=> {*/}
-                    {/*    console.log(props)*/}
-                    {/*    return <Posts/>;*/}
-                    {/*}}/>*/}
                     <Route exact path={'/posts/:id'} component={PostDetails}/>
                     <Route path={'/posts'} component={Posts}/>
-                    <Route exact={true} path={'/comments/:id'} component={CommentDetails}/>
                     <Route path={'/comments'} component={Comments}/>
-
-
                 </Switch>
-
                 <hr/>
             </div>
         </Router>
-
     );
 }
 

@@ -1,4 +1,3 @@
-import {useParams} from "react-router-dom";
 import {useEffect, useState} from "react";
 
 export default function CommentDetails(props) {
@@ -17,7 +16,6 @@ export default function CommentDetails(props) {
     return (
         <div>
             {comment && <h3>{comment.id} - {comment.name} -> {comment.body}</h3>}
-
         </div>
     )
 }

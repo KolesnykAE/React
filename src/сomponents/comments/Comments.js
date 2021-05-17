@@ -21,9 +21,6 @@ export default function Comments(props) {
             {
                 comments.map(value => <Comment key={value.id} item={value} url={url}/>)
             }
-            <Switch>
-                {/*<Route path={'/comments/:id'} component={CommentDetails}/>*/}
-            </Switch>
         </div>
     );
 }
