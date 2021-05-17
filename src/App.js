@@ -1,11 +1,5 @@
 import './App.css';
-
-import {
-    BrowserRouter as Router,
-    Switch,
-    Route,
-    Link,
-} from 'react-router-dom';
+import {BrowserRouter as Router, Link, Route, Switch,} from 'react-router-dom';
 import Home from "./components/home/Home";
 import Users from "./components/users/Users";
 import Posts from "./components/posts/Posts";
@@ -46,7 +40,6 @@ function App() {
 
 
                 </Switch>
-
 
                 <hr/>
             </div>
