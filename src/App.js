@@ -1,20 +1,43 @@
 import './App.css';
-import CharacterComponent from "./Components/characterComponent";
+import {BrowserRouter as Router, Link, Route, Switch,} from 'react-router-dom';
+import Home from "./сomponents/home/Home";
+import Posts from "./сomponents/posts/Posts";
+import Users from "./сomponents/users/Users";
+import UserDetails from "./сomponents/user-details/UserDetails";
+import {createContext} from "react";
 
+export let MyContext = createContext('');
 
 function App() {
     return (
-        <div>
-            <CharacterComponent
-                name={'Alina'}
-                image={'https://i.pinimg.com/originals/f3/73/7e/f3737e27e9f5e7632204d4a90bd03a45.png'}
-                description={'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet doloribus ducimus eaque, nisi obcaecati odit, pariatur quasi quia quos reprehenderit sequi soluta tenetur velit vero voluptatibus. Consectetur delectus iusto tenetur?'}/>
-            <CharacterComponent
-                name={'Anna'}
-                image={'https://spar.org.ua/img.php?ipt=https://cdnimg.rg.ru/img/content/201/71/93/shcherbakova_d_850.jpg'}
-                description={'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet doloribus ducimus eaque, nisi obcaecati odit, pariatur quasi quia quos reprehenderit sequi soluta tenetur velit vero voluptatibus. Consectetur delectus iusto tenetur?'}/>
+        <Router>
+            <MyContext.Provider value={'okten'}>
+                <div>
+                    <Link to={'/'}>home page</Link>
+                    <br/>
+                    <Link to={'/users'}>users page</Link>
+                    <br/>
+                    <Link to={'/posts'}>posts page</Link>
+                    <br/>
 
-        </div>
+                    <hr/>
+                    <Switch>
+                        <Route exact path={'/'} component={Home}/>
+
+                        <Route path={'/users'} component={Users}/>
+                        <Route exact path={'/posts'} component={Posts}/>
+
+                    </Switch>
+                    <hr/>
+
+                </div>
+                <div>
+                        <Posts/>
+
+                </div>
+            </MyContext.Provider>
+
+        </Router>
     );
 }
 
