@@ -14,7 +14,7 @@ function App() {
     return (
         <Router>
             <div className='main-page'>
-                <Link to={'/counter'}>Counter</Link>
+                <Link to={'/counter'} className='link'>Counter</Link>
                 <Route path={'/counter'} component={Counter}/>
             </div>
         </Router>

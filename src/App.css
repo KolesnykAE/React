@@ -6,3 +6,9 @@ body {
     text-align: center;
 }
 
+.link {
+    font-size: 30px;
+    font-weight: bold;
+    color: cornflowerblue;
+}
+
