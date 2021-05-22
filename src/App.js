@@ -1,19 +1,45 @@
 import './App.css';
-import CharacterComponent from "./Components/characterComponent";
+import React from "react";
+import {useSelector, useDispatch} from "react-redux";
 
+const Counter = () => {
+    const counter = useSelector(({counter}) => counter)
+
+
+    return (
+        <>
+            <h1>counter: {counter}</h1>
+
+        </>
+
+    )
+}
 
 function App() {
-    return (
-        <div>
-            <CharacterComponent
-                name={'Alina'}
-                image={'https://i.pinimg.com/originals/f3/73/7e/f3737e27e9f5e7632204d4a90bd03a45.png'}
-                description={'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet doloribus ducimus eaque, nisi obcaecati odit, pariatur quasi quia quos reprehenderit sequi soluta tenetur velit vero voluptatibus. Consectetur delectus iusto tenetur?'}/>
-            <CharacterComponent
-                name={'Anna'}
-                image={'https://spar.org.ua/img.php?ipt=https://cdnimg.rg.ru/img/content/201/71/93/shcherbakova_d_850.jpg'}
-                description={'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet doloribus ducimus eaque, nisi obcaecati odit, pariatur quasi quia quos reprehenderit sequi soluta tenetur velit vero voluptatibus. Consectetur delectus iusto tenetur?'}/>
+    const dispatch = useDispatch();
+    const [value, setValue] = React.useState(0)
 
+    return (
+        <div className="App">
+            <Counter/>
+            <button onClick={() => {
+                dispatch({type: 'INC'})
+            }}>increment
+            </button>
+            <button onClick={() => {
+                dispatch({type: 'DEC'})
+            }}>decrement
+            </button>
+            <button onClick={() => {
+                dispatch({type: 'RESET'})
+            }}>reset
+            </button>
+
+            <input type="number" value={value} onChange={({target: {value}}) => setValue(value)}/>
+            <button onClick={() => {
+                dispatch({type: 'INC_CUSTOM', payload: Number(value)})
+            }}>inc custom
+            </button>
         </div>
     );
 }
