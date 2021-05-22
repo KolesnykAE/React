@@ -8,6 +8,7 @@ import {
     setError
 } from './redux';
 
+
 const Posts = () => {
     // const store = useSelector((store) => store); первоначальный а дальше исправили на
     const {isLoading, posts, error} = useSelector(({isLoading, posts, error}) => ({
