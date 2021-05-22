@@ -1,19 +1,66 @@
 import './App.css';
-import CharacterComponent from "./Components/characterComponent";
+import React, {useEffect} from "react";
+import {useSelector, useDispatch} from "react-redux";
+import {
+    setIsLoading,
+    setPosts,
+    resetIsLoading,
+    setError
+} from './redux';
 
+const Posts = () => {
+    // const store = useSelector((store) => store); первоначальный а дальше исправили на
+    const {isLoading, posts, error} = useSelector(({isLoading, posts, error}) => ({
+        isLoading,
+        posts,
+        error,
+    })
+    );
+    const dispatch = useDispatch();
+
+    const fetchPosts = async() => {
+        try {
+            dispatch(setIsLoading());
+            const responce = await fetch('https://jsonplaceholder.typicode.com/posts');
+            const dataJson = await responce.json();
+
+            dispatch(setPosts(dataJson));
+
+        } catch (e) {
+            dispatch(resetIsLoading());
+            dispatch(setError("Failed to fetch data"));
+        }
+    };
+
+    React.useEffect(() => {
+        fetchPosts();
+    }, []);
+
+    if(error) {
+        return (<h1>{error}</h1>)
+
+
+    }
+    if  (isLoading) {
+        return (
+            <h1>Loading!!!</h1>
+        )
+    }
+
+    return (
+        <div>
+            {posts.map(posts => (
+            <p key={posts.id}>{posts.title} - {posts.body} - </p>
+            ))}
+    </div>
+    );
+
+}
 
 function App() {
     return (
         <div>
-            <CharacterComponent
-                name={'Alina'}
-                image={'https://i.pinimg.com/originals/f3/73/7e/f3737e27e9f5e7632204d4a90bd03a45.png'}
-                description={'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet doloribus ducimus eaque, nisi obcaecati odit, pariatur quasi quia quos reprehenderit sequi soluta tenetur velit vero voluptatibus. Consectetur delectus iusto tenetur?'}/>
-            <CharacterComponent
-                name={'Anna'}
-                image={'https://spar.org.ua/img.php?ipt=https://cdnimg.rg.ru/img/content/201/71/93/shcherbakova_d_850.jpg'}
-                description={'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet doloribus ducimus eaque, nisi obcaecati odit, pariatur quasi quia quos reprehenderit sequi soluta tenetur velit vero voluptatibus. Consectetur delectus iusto tenetur?'}/>
-
+           <Posts/>
         </div>
     );
 }
