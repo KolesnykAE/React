@@ -4,30 +4,19 @@ const initionalState = {
 
 const reducer = (state = initionalState, action) => {
     switch (action.type) {
-        case 'INC_1': {
+        case 'INC': {
             return {
                 ...state,
-                counter: state.counter + 1
+                counter: state.counter + action.payload
             };
         }
-        case 'DEC_1': {
+        case 'DEC': {
             return {
                 ...state,
-                counter: state.counter - 1
+                counter: state.counter - action.payload
             };
         }
-        case 'INC_100': {
-            return {
-                ...state,
-                counter: state.counter + 100
-            };
-        }
-        case 'DEC_100': {
-            return {
-                ...state,
-                counter: state.counter - 100
-            };
-        }
+
         default:
             return state
     }
